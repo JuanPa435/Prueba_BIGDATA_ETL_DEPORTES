@@ -5,3 +5,5 @@ sqlalchemy
 pymysql  # Librería para conectarse a MySQL
 python-dotenv  # Para manejar variables de entorno desde el archivo .env
 requests
+mysqlclient
+PyMySQL
