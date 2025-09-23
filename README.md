@@ -53,9 +53,6 @@ La base de datos contiene información sobre partidos de **voleibol de playa**, 
 
 La tabla se llama `volleyball_matches` y tiene la información de cada partido jugado en el torneo.
 
-### Creación de la Tabla
-
-La tabla `volleyball_matches` se crea automáticamente a partir de los datos del CSV o desde la base de datos, dependiendo de la configuración. El código analiza las columnas del archivo CSV y crea la tabla con los tipos de datos adecuados (por ejemplo, `STRING`, `INT`, `DATE`, `TIME`).
 
 ## Estructura de Archivos
 
@@ -65,47 +62,77 @@ ETLProject/
 │   └── ETLconfig.py          # Configuración global del proyecto (incluyendo base de datos)
 │
 ├── /Data
-│   ├── /Extract
-│   │   └── ETLextract.py     # Script de extracción de datos (ya sea desde MySQL o CSV)
-│   ├── /Load
-│   │   └── ETLload.py        # Script para cargar los datos en la base de datos
-│   ├── /Transform
-│   │   └── ETLtransform.py   # Script para transformar los datos (limpieza y formateo)
-│   └── /BeachVolleyball.csv  # Archivo CSV con los datos de voleibol de playa
+│   └── /BeachVolleyball.csv  # Archivo CSV con los datos de voleibol de playa  
+│   
+├── /Extract
+│   └── ETLextract.py     # Script de extracción de datos (ya sea desde MySQL o CSV)
+
+├── /Load
+│   └── ETLload.py        # Script para cargar los datos en la base de datos
 │
-├── /Visualizations
-│   └── generate_graphs.py    # Script para generar las gráficas de análisis
-├── .env                      # Variables de entorno (URI de la base de datos, ruta del CSV)
+├── /Transform
+│   └── ETLtransform.py   # Script para transformar los datos (limpieza y formateo)
+│   └── Visualizations.py   # Script para generar las gráficas de análisis
+├── .env              # Variables de entorno (URI de la base de datos, ruta del CSV)
+├── .gitignore              # Archivos y carpetas que deben ser ignorados por git
+├── Main.py                 # Ejecuta el flujo completo de ETL y genera las gráficas
+├── README.md               # Descripción del proyecto
 
-Instalación
 
-Clona el repositorio:
 
+# Instrucciones de Instalación y Ejecución
+
+### 1. Clona el repositorio:
+Primero, clona el repositorio en tu máquina local:
+
+```bash
 git clone <URL_REPOSITORIO>
+```
 
+### 2. Crea y activa un entorno virtual:
 
-Crea y activa un entorno virtual:
+Es recomendable usar un entorno virtual para evitar conflictos con otras dependencias del sistema:
 
+## En Linux/macOS:
+
+```bash
 python -m venv env
-source env/bin/activate  # En Windows usar `env\Scripts\activate`
+source env/bin/activate
+```
 
+## En Windows:
 
-Instala las dependencias:
+```bash
+python -m venv env
+env\Scripts\activate
+```
 
+### 3. Instala las dependencias:
+
+Una vez que el entorno virtual esté activado, instala todas las dependencias necesarias para el proyecto:
+
+```bash
 pip install -r requirements.txt
+```
 
+### 4. Crea el archivo .env:
 
-Crea un archivo .env con la configuración de la base de datos:
+Crea un archivo llamado .env en el directorio raíz del proyecto y agrega la configuración de la base de datos y cualquier otra variable de entorno necesaria. Un ejemplo básico:
 
-DATABASE_URI=mysql://root:oOuPrYtDUBjUuKXfpWHHUshEsXNkDVjI@shuttle.proxy.rlwy.net:46734/railway
-INPUT_PATH=Data/BeachVolleyball.csv  # Ruta al archivo CSV
+```bash
+DATABASE_URI =  mysql:EL_LINK_DE_LA_BASE_DE_DATOS
+INPUT_PATH = Data/BeachVolleyball.csv  # Ruta al archivo CSV
+```
 
+### 5. Ejecuta el flujo ETL:
 
-Ejecuta el flujo ETL:
+Finalmente, ejecuta el script principal del flujo ETL:
 
+```bash
 python Main.py
+```
 
-Funcionalidad del Proyecto
+# Funcionalidad del Proyecto
 1. Extracción de Datos (Extract)
 
 Los datos se extraen desde un archivo CSV (BeachVolleyball.csv) o desde la base de datos MySQL. El archivo de entrada y la configuración de la base de datos se gestionan a través del archivo .env.
@@ -134,7 +161,7 @@ Tendencia de Puntajes a lo Largo del Tiempo: Muestra cómo los puntajes han camb
 
 Comparación de Puntajes por País: Compara los puntajes de los partidos según los países de los jugadores.
 
-Contribuciones
+# Contribuciones
 
 Si deseas contribuir a este proyecto, por favor sigue estos pasos:
 
@@ -145,8 +172,3 @@ Crea una rama para tu funcionalidad (git checkout -b feature/nueva-funcionalidad
 Realiza tus cambios y haz un commit (git commit -am 'Agregada nueva funcionalidad').
 
 Empuja a tu rama (git push origin feature/nueva-funcionalidad).
-
-Crea un pull request.
-├── .gitignore                # Archivos y carpetas que deben ser ignorados por git
-├── Main.py                   # Ejecuta el flujo completo de ETL y genera las gráficas
-├── README.md                 # Descripción del proyecto
