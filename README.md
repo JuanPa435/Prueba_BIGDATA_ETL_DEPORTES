@@ -54,31 +54,6 @@ La base de datos contiene información sobre partidos de **voleibol de playa**, 
 La tabla se llama `volleyball_matches` y tiene la información de cada partido jugado en el torneo.
 
 
-## Estructura de Archivos
-
-ETLProject/
-│
-├── /Config
-│   └── ETLconfig.py          # Configuración global del proyecto (incluyendo base de datos)
-│
-├── /Data
-│   └── /BeachVolleyball.csv  # Archivo CSV con los datos de voleibol de playa  
-│   
-├── /Extract
-│   └── ETLextract.py     # Script de extracción de datos (ya sea desde MySQL o CSV)
-
-├── /Load
-│   └── ETLload.py        # Script para cargar los datos en la base de datos
-│
-├── /Transform
-│   └── ETLtransform.py   # Script para transformar los datos (limpieza y formateo)
-│   └── Visualizations.py   # Script para generar las gráficas de análisis
-├── .env              # Variables de entorno (URI de la base de datos, ruta del CSV)
-├── .gitignore              # Archivos y carpetas que deben ser ignorados por git
-├── Main.py                 # Ejecuta el flujo completo de ETL y genera las gráficas
-├── README.md               # Descripción del proyecto
-
-
 
 # Instrucciones de Instalación y Ejecución
 
