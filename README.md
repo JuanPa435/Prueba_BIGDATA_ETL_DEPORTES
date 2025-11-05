@@ -107,6 +107,43 @@ Finalmente, ejecuta el script principal del flujo ETL:
 python Main.py
 ```
 
+## Docker
+
+Se proporcionan archivos para contenerizar el proyecto: `Dockerfile` y `docker-compose.yml`.
+
+Instrucciones rápidas:
+
+1) Construir la imagen con Docker:
+
+```bash
+docker build -t etl-deportes:latest .
+```
+
+2) Ejecutar el contenedor directamente:
+
+```bash
+docker run --rm -v "$(pwd)/.env:/app/.env:ro" -v "$(pwd)/Data:/app/Data:ro" etl-deportes:latest
+```
+
+Nota: el montaje de `Data` es opcional; si no lo montas, asegúrate de que el archivo `Data/BeachVolleyball.csv` esté presente en el contexto copiado.
+
+3) Usar docker-compose (más sencillo para desarrollo):
+
+```bash
+docker-compose up --build
+```
+
+4) Detener el servicio:
+
+```bash
+docker-compose down
+```
+
+Recomendaciones:
+- Si tu proyecto requiere escribir en `Data` o en la base de datos, cambia el volumen montado en `docker-compose.yml` a lectura/escritura (quita `:ro`).
+- Si usas `mysqlclient` y falla la instalación, revisa que tengas las dependencias de sistema adecuadas; el `Dockerfile` ya instala las más comunes en Debian/Ubuntu.
+
+
 # Funcionalidad del Proyecto
 1. Extracción de Datos (Extract)
 
